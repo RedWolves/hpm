@@ -74,8 +74,9 @@ args.command(['s', 'search'], 'Search for plugins on npm', (name, args) => {
 	return lsRemote()
 		.then(entries => {
 			return entries.filter(entry => {
+				console.log(!!entry.description);
 				return entry.name.indexOf(query) !== -1 ||
-					entry.description.toLowerCase().indexOf(query) !== -1;
+					((entry.description) ? entry.description.toLowerCase().indexOf(query) : -1) !== -1;
 			});
 		})
 		.then(entries => {
